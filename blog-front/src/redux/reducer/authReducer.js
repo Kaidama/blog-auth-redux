@@ -1,6 +1,7 @@
 import {
   AUTH_USER_SUCCESSFUL,
-  AUTH_USER_FAILURE
+  AUTH_USER_FAILURE,
+  AUTH_MESSAGES
 } from "../actionTypes/actionTypes";
 
 const initialState = {

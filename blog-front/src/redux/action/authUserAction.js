@@ -8,13 +8,13 @@ import Axios from "../../lib/Axios";
 export const signup = userInfo => async dispatch => {
   try {
     let success = await Axios.post("/users/sign-up", userInfo);
-    console.log(success.data.message);
     dispatch(authUserSuccessful(success.data.message));
+    // console.log(success.data.message);
     return Promise.resolve(success.data.message);
   } catch (err) {
     let errors = err.response.data.message;
     dispatch(authUserFailure(errors.message));
-    console.log(errors.message);
+    // console.log(errors.message);
   }
 };
 
