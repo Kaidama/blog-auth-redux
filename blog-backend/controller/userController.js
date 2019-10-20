@@ -11,6 +11,7 @@ module.exports = {
   signup: async (req, res) => {
     try {
       let newUser = await createUser(req.body);
+
       let hashedPassword = await hashPassword(newUser.password);
       newUser.password = hashedPassword;
       await newUser.save();
@@ -35,6 +36,7 @@ module.exports = {
         };
       }
       await checkPassword(req.body);
+
       let jwtToken = await newToken(req.body);
       res.status(200).json({ token: jwtToken });
     } catch (error) {

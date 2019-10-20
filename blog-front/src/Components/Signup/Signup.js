@@ -100,14 +100,14 @@ class Signup extends Component {
         {this.props.authUser.message !== null
           ? this.props.authUser.message
           : ""}
-        <ValidatorForm className='Form' onSubmit={this.handleSubmit}>
+        <ValidatorForm className="Form" onSubmit={this.handleSubmit}>
           {submitted ? <Spinner /> : form}
           <br />
 
           <ButtonClass
-            color='primary'
-            variant='contained'
-            type='submit'
+            color="primary"
+            variant="contained"
+            type="submit"
             disabled={submitted}
           >
             {(submitted && "Your form is submitted!") ||
@@ -120,6 +120,7 @@ class Signup extends Component {
 }
 const mapStateToProps = state => {
   return {
+    //combined reducers from authReducer
     authUser: state.authUser
   };
 };
