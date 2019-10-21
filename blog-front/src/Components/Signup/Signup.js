@@ -121,7 +121,8 @@ class Signup extends Component {
 const mapStateToProps = state => {
   return {
     //combined reducers from authReducer
-    authUser: state.authUser
+    authUser: state.authUser,
+    authMsg: state.authMsg
   };
 };
 

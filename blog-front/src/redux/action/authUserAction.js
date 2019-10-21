@@ -1,7 +1,8 @@
 import {
   AUTH_USER_SUCCESSFUL,
   AUTH_USER_FAILURE,
-  AUTH_USER_LOGOUT
+  AUTH_USER_LOGOUT,
+  SET_HTTP_MESSAGE
 } from "../actionTypes/actionTypes";
 import Axios from "../../lib/Axios";
 
@@ -12,8 +13,9 @@ export const signup = userInfo => async dispatch => {
     dispatch(authUserSuccessful(success.data.message));
     return Promise.resolve(success.data.message);
   } catch (err) {
-    let errors = err.response.data.message;
-    dispatch(authUserFailure(errors.message));
+    let errors = err.response;
+    // dispatch(authUserFailure(errors.message));
+    dispatch(setHttpMessage(errors.data.message));
     console.log(errors.message);
   }
 };
@@ -25,13 +27,18 @@ export const logout = userInfo => async dispatch => {
   }
 };
 
-export const authUserSuccessful = message => dispatch => {
+export const authUserSuccessful = () => dispatch => {
   dispatch({
-    type: AUTH_USER_SUCCESSFUL,
-    payload: message
+    type: AUTH_USER_SUCCESSFUL
   });
 };
 
+export const setHttpMessage = message => dispatch => {
+  dispatch({
+    type: SET_HTTP_MESSAGE,
+    payload: message
+  });
+};
 export const authUserFailure = message => dispatch => {
   dispatch({
     type: AUTH_USER_FAILURE,

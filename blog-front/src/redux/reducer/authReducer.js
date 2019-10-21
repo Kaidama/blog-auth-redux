@@ -5,8 +5,8 @@ import {
 
 const initialState = {
   isAuthenticated: false,
-  user: {},
-  message: null
+  user: {}
+  // message: null
 };
 
 export default function(state = initialState, action) {
