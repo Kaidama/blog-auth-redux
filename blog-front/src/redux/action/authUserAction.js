@@ -9,14 +9,20 @@ import Axios from "../../lib/Axios";
 export const signup = userInfo => async dispatch => {
   try {
     let success = await Axios.post("/users/sign-up", userInfo);
-    console.log(success.data.message);
     dispatch(authUserSuccessful(success.data.message));
+    // console.log(success.data.message);
     return Promise.resolve(success.data.message);
   } catch (err) {
+<<<<<<< HEAD
     let errors = err.response;
     // dispatch(authUserFailure(errors.message));
     dispatch(setHttpMessage(errors.data.message));
     console.log(errors.message);
+=======
+    let errors = err.response.data.message;
+    dispatch(authUserFailure(errors.message));
+    // console.log(errors.message);
+>>>>>>> 065320fe3b8d17511178d43869e52525ef772593
   }
 };
 
