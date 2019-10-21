@@ -8,7 +8,7 @@ import { ValidatorForm } from "react-material-ui-form-validator";
 import formArray from "./SignUpConfig";
 import { authUserSuccessful, signup } from "../../redux/action/authUserAction";
 import Spinner from "../../Factory/Spinner/Spinner";
-
+import MessageBar from "../../Factory/MessageBar/MessageBar";
 class Signup extends Component {
   state = {
     formData: {
@@ -62,17 +62,11 @@ class Signup extends Component {
           .then(() => {
             this.successfullySignedUp();
           })
-          .catch(() => {});
-        this.setState({
-          submitted: false,
-          formData: {
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            gender: ""
-          }
-        });
+          .catch(error => {
+            this.setState({
+              submitted: false
+            });
+          });
         // this.props.authUserSuccessful();
         // this.props.history.push("/");
       }
@@ -94,20 +88,28 @@ class Signup extends Component {
         </div>
       );
     });
-
+    // console.log(this.props.message);
     return (
       <>
-        {this.props.authUser.message !== null
-          ? this.props.authUser.message
-          : ""}
-        <ValidatorForm className="Form" onSubmit={this.handleSubmit}>
+        {this.props.message.serverMessage !== null ? (
+          <MessageBar
+            fontColorStyle={this.props.message.messageStyle.fontColorStyle}
+            dynamicClassName={this.props.message.messageStyle.dynamicClassName}
+          >
+            {this.props.message.serverMessage}
+          </MessageBar>
+        ) : (
+          ""
+        )}
+
+        <ValidatorForm className='Form' onSubmit={this.handleSubmit}>
           {submitted ? <Spinner /> : form}
           <br />
 
           <ButtonClass
-            color="primary"
-            variant="contained"
-            type="submit"
+            color='primary'
+            variant='contained'
+            type='submit'
             disabled={submitted}
           >
             {(submitted && "Your form is submitted!") ||
@@ -122,7 +124,7 @@ const mapStateToProps = state => {
   return {
     //combined reducers from authReducer
     authUser: state.authUser,
-    authMsg: state.authMsg
+    message: state.message
   };
 };
 

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import httpReducer from "./httpReducer";
+import handleMessageReducer from "./handleMessageReducer";
 export default combineReducers({
   authUser: authReducer,
-  authMsg: httpReducer
+  message: handleMessageReducer
 });
