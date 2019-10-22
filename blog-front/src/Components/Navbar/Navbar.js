@@ -36,7 +36,7 @@ class Navbar extends Component {
             ].join(" ")}
             activeStyle={{ color: "white", textDecoration: "underline white" }}
           >
-            Hamster
+            
           </NavLink>
         </>
       );
