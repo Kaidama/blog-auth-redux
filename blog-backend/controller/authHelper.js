@@ -16,9 +16,6 @@ async function newToken(user) {
   return jwtToken;
 }
 
-async function verifyToken(token) {
-  return jwt.verify(token, process.env.SECRET_KEY, payload);
-}
 async function hashPassword(password) {
   let genSalt = await bcrypt.genSalt(10);
   let hashedPassword = await bcrypt.hash(password, genSalt);

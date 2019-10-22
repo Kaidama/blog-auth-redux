@@ -19,13 +19,13 @@ class App extends Component {
       <>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/sign-up" component={Signup} />
-          <Route exact path="/sign-in" component={Signin} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/sign-up' component={Signup} />
+          <Route exact path='/sign-in' component={Signin} />
           <Switch>
             <PrivateRoute
               exact
-              path="/show-all-talks"
+              path='/show-all-talks'
               component={ShowAllTalks}
             />
           </Switch>

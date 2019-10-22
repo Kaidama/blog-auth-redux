@@ -21,6 +21,7 @@ export default function(state = initialState, action) {
           dynamicClassName: "App"
         }
       };
+
     case AUTH_USER_FAILURE:
       return {
         serverMessage: action.payload,

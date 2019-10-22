@@ -8,6 +8,9 @@ const {
 } = require("./authHelper");
 
 module.exports = {
+  userInfo: (req, res) => {
+    res.status(200).json({ data: req.user });
+  },
   signup: async (req, res) => {
     try {
       let newUser = await createUser(req.body);
