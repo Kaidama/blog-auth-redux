@@ -4,18 +4,13 @@ import {
   AUTH_USER_LOGOUT,
   AUTH_USER_SIGN_IN_SUCCESSFUL
 } from "../actionTypes/actionTypes";
-// import decodeToken from "../../lib/checkAuthToken";
+
 import Axios from "../../lib/Axios";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "../../lib/setAuthToken";
+
+import axiosConfig from "../../lib/authConfig";
+import decodeToken from "../../lib/checkAuthToken";
 
 export const signup = userInfo => async dispatch => {
-  const axiosConfig = {
-    headers: {
-      "Content-Type": "application/json;charset=UTF-8",
-      "Access-Control-Allow-Origin": "*"
-    }
-  };
   try {
     let success = await Axios.post("/users/sign-up", userInfo, axiosConfig);
     dispatch(authUserSuccessful(success.data.message));
@@ -29,22 +24,19 @@ export const signup = userInfo => async dispatch => {
 };
 
 export const signin = userInfo => async dispatch => {
-  let axiosConfig = {
-    headers: {
-      "Content-Type": "application/json;charset=UTF-8",
-      "Access-Control-Allow-Origin": "*"
-    }
-  };
   try {
     let success = await Axios.post("/users/sign-in", userInfo, axiosConfig);
     dispatch(authSigninSuccessful(success));
+    /**
     let { token } = success.data;
-    // console.log(success.data);
+    console.log(success.data);
     localStorage.setItem("jwtToken", token);
     const decoded = jwt_decode(token);
-    setAuthToken(token);
-    console.log(decoded);
-    return Promise.resolve(decoded);
+    */
+
+    let user = await decodeToken(success);
+    console.log(user);
+    return user;
   } catch (err) {
     console.log(err);
   }

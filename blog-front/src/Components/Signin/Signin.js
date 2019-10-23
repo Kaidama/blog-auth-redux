@@ -21,17 +21,7 @@ class Signin extends Component {
   };
 
   componentDidMount() {
-    if (this.props.authUser.isAuthenticated) {
-      this.props.history.push("/");
-    }
-    // custom rule will have name 'isPasswordMatch'
-    // ValidatorForm.addValidationRule(value => {
-    //   const { formData } = this.state;
-    //   if (value !== formData) {
-    //     return false;
-    //   }
-    //   return true;
-    // });
+    //handle your jwtExpiration here
   }
   successfullySignedIn = () => {
     this.setState({
@@ -101,14 +91,14 @@ class Signin extends Component {
           ""
         )}
 
-        <ValidatorForm className='Form' onSubmit={this.handleSubmit}>
+        <ValidatorForm className="Form" onSubmit={this.handleSubmit}>
           {submitted ? <Spinner /> : form}
           <br />
 
           <ButtonClass
-            color='primary'
-            variant='contained'
-            type='submit'
+            color="primary"
+            variant="contained"
+            type="submit"
             disabled={submitted}
           >
             {(submitted && "Your form is submitted!") ||

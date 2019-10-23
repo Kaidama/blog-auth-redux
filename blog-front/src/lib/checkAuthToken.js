@@ -1,12 +1,14 @@
-// import setAuthToken from "./setAuthToken";
-// import jwt_decode from "jwt-decode";
+import setAuthToken from "./setAuthToken";
+import jwt_decode from "jwt-decode";
+//newToken is the response
+const decodeToken = newToken => {
+  const { token } = newToken.data;
+  localStorage.setItem("jwtToken", token);
+  const decoded = jwt_decode(token);
+  setAuthToken(token);
+  return decoded;
+};
 
-// const decodeToken = userInfo => {
-//   const { token } = userInfo.data;
-//   localStorage.setItem("jwtToken", token);
-//   const decoded = jwt_decode(token);
-//   setAuthToken(token);
-//   return decoded;
-// };
+// since the token is SET now go GET that shit from storage. Dont forget to handle it on your routes.
 
-// export default decodeToken;
+export default decodeToken;
