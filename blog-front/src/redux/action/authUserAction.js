@@ -6,9 +6,9 @@ import {
 } from "../actionTypes/actionTypes";
 
 import Axios from "../../lib/Axios";
-
 import axiosConfig from "../../lib/authConfig";
 import decodeToken from "../../lib/checkAuthToken";
+
 
 export const signup = userInfo => async dispatch => {
   try {

@@ -1,8 +1,8 @@
 import setAuthToken from "./setAuthToken";
 import jwt_decode from "jwt-decode";
 //newToken is the response
-const decodeToken = newToken => {
-  const { token } = newToken.data;
+const decodeToken = success => {
+  const { token } = success.data;
   localStorage.setItem("jwtToken", token);
   const decoded = jwt_decode(token);
   setAuthToken(token);
